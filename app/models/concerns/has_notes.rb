@@ -4,10 +4,10 @@ module HasNotes
   included do
 
     def notes
-      in_objects(:describes)
+      in_neighbours(:describes)
     end
 
-    end
+  end
 
   class_methods do
   end

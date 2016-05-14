@@ -34,10 +34,8 @@ class NotesController < ApplicationController
       note.updated_by = current_user
     end
 
-    if @note.save
-      if @notable.present?
-        Describes.new(in: @notable, out: @note).save!
-      end
+    if @note.save! && @notable.present?
+      Describes.new(to: @notable, from: @note).save!
     end
 
     AddMentionsForContentJob.perform_later(@note.id.to_s)
@@ -66,11 +64,11 @@ class NotesController < ApplicationController
     end
 
     def set_note
-      @note = Note.find(params[:id])
+      @note = Note.find!(params[:id])
     end
 
     def set_notable
-      @notable = Note.find(params[:person_id] || params[:organization_id])
+      @notable = Person.find(params[:person_id]) || Organization.find(params[:organization_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

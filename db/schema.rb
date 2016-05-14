@@ -1,7 +1,7 @@
 # Schema for ArangoDB::OGM
 require 'arangodb/ogm'
 
-configuration = [
+Graph = [
   {
     "collection" => Role.collection_name,
     "from"       => [ Person.collection_name ],
@@ -39,10 +39,23 @@ configuration = [
   }
 ]
 
-if ArangoDB::OGM.client.graph.get.body['result'].include?(ArangoDB::OGM.graph_name)
-  ArangoDB::OGM.graph.put("edgeDefinitions" => configuration)
+Documents = Graph.map { |d| d['from'] + d['to'] }.flatten.uniq
+Edges = Graph.map { |d| d['collection'] }.flatten.uniq
+
+Documents.each do |collection|
+  cc = ArangoDB::OGM.client.collection(collection)
+  cc.create unless cc.exists?
+end
+
+Edges.each do |collection|
+  cc = ArangoDB::OGM.client.collection(collection)
+  cc.create('type' => ArangoDB::API::Collection::Edge) unless cc.exists?
+end
+
+if ArangoDB::OGM.graph.exists?
+  ArangoDB::OGM.graph.update("edgeDefinitions" => Graph)
 else
-  ArangoDB::OGM.client.graph.post('name' => ArangoDB::OGM.graph_name, "edgeDefinitions" => configuration)
+  ArangoDB::OGM.graph.create("edgeDefinitions" => Graph)
 end
 
 

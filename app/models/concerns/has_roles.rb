@@ -4,7 +4,7 @@ module HasRoles
   included do
 
     def roles
-      out_objects(:roles)
+      out_neighbours(:roles)
     end
 
     end

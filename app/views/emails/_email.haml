@@ -40,13 +40,13 @@
       .stats
         Authored
         - if email.created_by.present?
-          by #{ link_to email.created_by.fetch.full_name, email.created_by.fetch }
+          by #{ link_to email.created_by.full_name, email.created_by }
         = timeago(email.created_at)
 
         - if email.created_by != email.updated_by && email.created_at != email.updated_at
           Edited
           - if email.updated_by.present?
-            by #{ link_to email.updated_by.fetch.full_name, email.created_by.fetch }
+            by #{ link_to email.updated_by.full_name, email.updated_by }
           #{ time_ago_in_words email.updated_at } ago.
         -# = modal_button('Edit', email)
         -# = render 'modal_form', object: email

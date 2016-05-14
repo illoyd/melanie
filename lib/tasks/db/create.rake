@@ -3,9 +3,9 @@ namespace :db do
   task create: :environment do
 
     # Initialize with a new database
-    db = ArangoDB::API::Database.new
+    db = ArangoDB::OGM.client.database
 
-    print "Creating #{ db.connection_uri.database }... "
+    print "Creating #{ ArangoDB::OGM.client.uri.database }... "
     unless db.exists?
       db.create
       puts 'ok'.green

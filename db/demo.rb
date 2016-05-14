@@ -14,7 +14,7 @@ person.update(preferred_name: 'Ian', formal_greeting: 'Mr Lloyd')
 org = Organization.find_or_create_by(name: 'Melanie Labs, Inc.')
 
 # Link person to org as president
-Role.create(out: person, in: org, title: 'President')
+Role.create(from: person, to: org, title: 'President')
 
 
 # Create some random people
@@ -25,6 +25,6 @@ end
 # Create some random companies
 orgs = 30.times.to_a.map do
   Organization.find_or_create_by(name: Faker::Company.name, ein: Faker::Company.ein, duns_number: Faker::Company.duns_number, logo_url: Faker::Company.logo).tap do |org|
-    rand(0..7).times { Role.create(out: people.sample, in: org, title: Faker::Name.title) }
+    rand(0..7).times { Role.create(from: people.sample, to: org, title: Faker::Name.title) }
   end
 end

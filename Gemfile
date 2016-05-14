@@ -27,7 +27,7 @@ gem 'puma'
 
 # ArangoDB OGM!
 gem 'arangodb-api', '~> 0.1', github: 'illoyd/arangodb-api', branch: 'develop'
-gem 'arangodb-ogm', '~> 0.1', github: 'illoyd/arangodb-ogm', branch: 'master'
+gem 'arangodb-ogm', '~> 0.1', github: 'illoyd/arangodb-ogm', branch: 'develop'
 
 # Additional tools, etc.
 gem 'mail'

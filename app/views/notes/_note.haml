@@ -22,13 +22,13 @@
       .stats
         Authored
         - if note.created_by.present?
-          by #{ link_to note.created_by.fetch.full_name, note.created_by.fetch }
+          by #{ link_to note.created_by.full_name, note.created_by }
         = timeago(note.created_at)
 
         - if note.created_by != note.updated_by && note.created_at != note.updated_at
           Edited
           - if note.updated_by.present?
-            by #{ link_to note.updated_by.fetch.full_name, note.created_by.fetch }
+            by #{ link_to note.updated_by.full_name, note.updated_by }
           #{ time_ago_in_words note.updated_at } ago.
         -# = modal_button('Edit', note)
         -# = render 'modal_form', object: note

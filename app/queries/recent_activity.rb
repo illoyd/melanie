@@ -1,12 +1,13 @@
-class RecentActivity < ArangoDB::OGM::Queries::Base
+class RecentActivity < ArangoDB::OGM::Queries::Neighbours
 
-  def initialize(object)
-    @object = object
+  def initialize(*args)
+    super ArangoDB::OGM.graph_name, *args
   end
 
-  def to_query
-    from_clause = @object.respond_to?(:id) ? @object.id : @object
-    "SELECT expand(both()) FROM #{ from_clause } ORDER BY updated_at DESC"
+  def to_s
+    sql = "FOR v IN GRAPH_NEIGHBORS( '#{ graph }', '#{ start }', #{ parsed_options } ) SORT v.updated_at ASC RETURN v"
+    puts sql
+    sql
   end
 
 end

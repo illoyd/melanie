@@ -5,11 +5,11 @@ namespace :db do
   task delete: :environment do
 
     # Initialize with a new database
-    db = ArangoDB::API::Database.new
+    db = ArangoDB::OGM.client.database
 
-    print "Deleting #{ db.connection_uri.database }... "
+    print "Deleting #{ ArangoDB::OGM.client.uri.database }... "
     if db.exists?
-      db.delete
+      db.destroy
       puts 'ok'.green
     else
       puts 'does not exist'.yellow

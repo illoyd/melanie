@@ -3,7 +3,6 @@
 class Note
   include ArangoDB::OGM::Vertex
   include ArangoDB::OGM::Document::Timestamps
-#   include Orientdb::ORM::HasEdges
 
   include HasAuthors
 
@@ -11,7 +10,7 @@ class Note
   attribute :body, :string, validates: { presence: true }
 
   def describes
-    out_objects(:describes)
+    out_neighbours(:describes)
   end
 
 end

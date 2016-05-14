@@ -9,6 +9,14 @@ module HasAuthors
     # Hook into callbacks
     before_validation :ensure_updated_by
 
+    def created_by
+      @cached_created_by ||= self.attribute('created_by').fetch
+    end
+
+    def updated_by
+      @cached_updated_by ||= self.attribute('updated_by').fetch
+    end
+
     protected
 
     def ensure_updated_by

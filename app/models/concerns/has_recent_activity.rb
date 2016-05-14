@@ -4,7 +4,7 @@ module HasRecentActivity
   included do
 
     def recent_activity
-      @recent_activity ||= RecentActivity.new(self).execute
+      @recent_activity ||= RecentActivity.new('start' => self, 'edges' => nil, 'direction' => nil).execute
     end
 
   end
