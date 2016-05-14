@@ -1,0 +1,18 @@
+/ List
+%li
+  = link_to(organizations_path) do
+    %i.ti-view-grid
+    %p List
+
+/ New
+%li
+  = link_to(new_organization_path) do
+    %i.ti-plus
+    %p New
+
+/ Edit
+- if @organization.try(:persisted?)
+  %li
+    = link_to(edit_person_path(@organization)) do
+      %i.ti-marker-alt
+      %p Edit

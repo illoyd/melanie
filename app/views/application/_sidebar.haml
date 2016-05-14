@@ -1,0 +1,32 @@
+.sidebar{ "data-background-color" => "white", "data-active-color" => 'success' }
+  -#
+    Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+    Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+  .sidebar-wrapper
+    .logo
+      = link_to('Melanie', root_path, class: 'simple-text')
+    %ul.nav
+      %li{ class: ('active' if controller.controller_name == 'search') }
+        = link_to '/search' do
+          %i.ti-search
+          %p Search
+
+      %li{ class: ('active' if controller.controller_name == 'people') }
+        = link_to :people do
+          %i.ti-id-badge
+          %p People
+
+      %li{ class: ('active' if controller.controller_name == 'organizations') }
+        = link_to :organizations do
+          %i.ti-world
+          %p Organisations
+
+      %li{ class: ('active' if controller.controller_name == 'hashtags') }
+        = link_to :hashtags do
+          %i.ti-tag
+          %p Hashtags
+
+      %li{ class: ('active' if controller.controller_name == 'profile') }
+        = link_to '/profile' do
+          %i.ti-settings
+          %p Profile

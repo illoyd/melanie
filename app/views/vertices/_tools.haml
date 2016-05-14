@@ -1,0 +1,20 @@
+- model_class = controller_name.classify.constantize
+
+/ List
+%li
+  = link_to( model_class ) do
+    %i.ti-view-grid
+    %p List
+
+/ New
+%li
+  = link_to( new_polymorphic_path(model_class) ) do
+    %i.ti-plus
+    %p New
+
+/ Edit
+- if @vertex.try(:persisted?)
+  %li
+    = link_to( edit_polymorphic_path(@vertex) ) do
+      %i.ti-marker-alt
+      %p Edit

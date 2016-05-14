@@ -1,0 +1,67 @@
+.row
+  .col-sm-6.col-lg-12
+    / About Card
+    %aside.card
+      .header
+        %h4.title About
+      .content
+        %dl
+          %dt Full Name
+          %dd= person.full_name
+
+          - if person.phonetic_full_name?
+            %dt Phonetic Full Name
+            %dd= person.phonetic_full_name
+
+        - if person.preferred_name?
+          %dt Preferred Name
+          %dd= person.preferred_name
+
+        - if person.phonetic_preferred_name?
+          %dt Phonetic Preferred Name
+          %dd= person.preferred_name
+
+        - if person.formal_greeting?
+          %dt Formal Greeting
+          %dd= person.formal_greeting
+
+        - if person.phonetic_formal_greeting?
+          %dt Phonetic Formal Greeting
+          %dd= person.phonetic_formal_greeting
+
+  - if person.roles.any?
+    .col-sm-6.col-lg-12
+      / Roles Card
+      %aside.card
+        %header.header
+          %h4.title Roles
+        %main.content
+          %ul.list-unstyled.team-members
+            - person.roles.each do |role|
+              %li= link_to "#{ role.title }, #{ role.organization.name }", role.organization
+
+  .col-sm-6.col-lg-12
+    / Important Dates Card
+    %aside.card
+      .header
+        %h4.title Important Dates
+      .content
+        %dl
+          - person.important_dates.each do |key, value|
+            - if value.present?
+              %dt= key.to_s.humanize
+              %dd= value
+
+.row
+  .col-xs-12
+    / All Data
+    %aside.card
+      .header
+        %h4.title All Data
+        %p.category Debug Data
+      .content
+        %dl
+          - @person.document_attributes.each do |key, value|
+            - if value.present?
+              %dt= key.to_s.humanize
+              %dd= value

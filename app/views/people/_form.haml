@@ -1,0 +1,8 @@
+= render 'model_errors', object: object
+
+= form_for(object, builder: BootstrapFormBuilder) do |f|
+  = render 'form_fragment', f: f
+
+  .form-group
+    = f.submit
+    = f.cancel

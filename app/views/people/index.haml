@@ -1,0 +1,22 @@
+- content_for :page_title do
+  People
+
+/ Stats
+.hidden-xs
+  = render 'stats'
+  %hr
+
+/ People
+%main#people.row
+  - @people.each do |person|
+    .col-md-4.col-sm-6= render person
+
+:javascript
+  // init Masonry
+  var $grid = $('#people').masonry({
+    // options...
+  });
+  // layout Masonry after each image loads
+  $grid.imagesLoaded().progress( function() {
+    $grid.masonry('layout');
+  });

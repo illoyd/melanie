@@ -1,0 +1,22 @@
+- content_for :page_title do
+  Organizations
+
+/ Stats
+.hidden-xs
+  = render 'stats'
+  %hr
+
+/ People
+%main#organizations.row
+  - @organizations.each do |organization|
+    .org.col-md-4.col-sm-6= render organization
+
+:javascript
+  // init Masonry
+  var $grid = $('#organizations').masonry({
+    // options...
+  });
+  // layout Masonry after each image loads
+  $grid.imagesLoaded().progress( function() {
+    $grid.masonry('layout');
+  });

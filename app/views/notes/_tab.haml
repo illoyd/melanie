@@ -1,0 +1,8 @@
+%section
+  %header
+    %button.btn.btn-sm.btn-block.btn-primary{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-target" => "#add_note", "data-toggle" => "collapse", :type => "button"}
+      Add a new note
+    #add_note.collapse
+      = render 'notes/form', object: [has_notes, Note.new]
+
+  = render vertex.notes.sort_by(&:updated_at).reverse.to_a

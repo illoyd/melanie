@@ -1,0 +1,7 @@
+- if content_for?(:page_header) || content_for?(:page_title)
+  %header
+    %h1
+      - if content_for?(:page_header)
+        = yield(:page_header)
+      - else
+        = yield(:page_title)

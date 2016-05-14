@@ -1,0 +1,37 @@
+%nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle{:type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar.bar1
+        %span.icon-bar.bar2
+        %span.icon-bar.bar3
+      %a.navbar-brand{:href => "#"}
+        - if content_for? :page_title
+          = yield :page_title
+        - else
+          Hello
+
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        / Tools
+        = render 'tools'
+
+        / TODO Notification handling
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            %i.ti-bell
+            %p.notification 5
+            %p Notifications
+            %b.caret
+          %ul.dropdown-menu
+            %li
+              %a{:href => "#"} Notification 1
+            %li
+              %a{:href => "#"} Notification 2
+            %li
+              %a{:href => "#"} Notification 3
+            %li
+              %a{:href => "#"} Notification 4
+            %li
+              %a{:href => "#"} Another notification

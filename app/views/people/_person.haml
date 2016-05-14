@@ -1,0 +1,16 @@
+.card
+  .header
+    %h4.title= link_to person.full_name, person
+    - if person['vip']
+      %p.category VIP
+  .content
+    - if person.try(:out_Role)
+      %ul.list-unstyled.team-members
+        - person.out_Role.each do |rid|
+          - role = rid.fetch
+          %li= link_to "#{ role.title }, #{ role.organization.name }", role.organization
+    .footer
+      %hr/
+      .stats
+        %i.ti-timer
+        = person.updated_at

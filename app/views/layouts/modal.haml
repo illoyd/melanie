@@ -1,0 +1,12 @@
+.modal.fade{:role => "dialog", :tabindex => "-1", id: id}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h2.modal-title= title
+      .modal-body
+        = yield
+      .modal-footer
+        %button.btn.btn-primary{:type => "button"} Save
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Discard

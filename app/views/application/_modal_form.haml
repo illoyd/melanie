@@ -1,0 +1,14 @@
+-# object = modal_form
+.modal.fade{:role => "dialog", :tabindex => "-1", id: modal_id_for(object)}
+  .modal-dialog
+    .modal-content
+      = form_for(object, builder: BootstrapFormBuilder) do |f|
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} &times;
+          %h4.modal-title= modal_title_for(object)
+        .modal-body
+          = render partial: form_fragment_for(object), locals: { f: f }
+        .modal-footer
+          .left-side= f.submit
+          .right-side= f.cancel_modal

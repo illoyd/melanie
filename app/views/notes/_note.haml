@@ -1,0 +1,34 @@
+%article.card
+
+  %header.header
+    %h4.title
+      %i.ti-comment-alt
+      Note for
+      - note.describes.each do |target|
+        = link_to(target.decorate.friendly_name, target)
+
+  %main.content
+    :maruku
+      #{ rewrite note.body }
+
+    %footer.footer
+      %hr/
+      = button_to(note, method: :delete, class: 'btn btn-sm btn-danger pull-right') do
+        %i.ti-trash
+        Delete
+      = link_to(edit_note_path(note), class: 'btn btn-sm btn-warning pull-right') do
+        %i.ti-pencil
+        Edit
+      .stats
+        Authored
+        - if note.created_by.present?
+          by #{ link_to note.created_by.fetch.full_name, note.created_by.fetch }
+        = timeago(note.created_at)
+
+        - if note.created_by != note.updated_by && note.created_at != note.updated_at
+          Edited
+          - if note.updated_by.present?
+            by #{ link_to note.updated_by.fetch.full_name, note.created_by.fetch }
+          #{ time_ago_in_words note.updated_at } ago.
+        -# = modal_button('Edit', note)
+        -# = render 'modal_form', object: note

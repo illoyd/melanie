@@ -1,0 +1,8 @@
+- content_for :page_title do
+  = '#' + @hashtag.text
+
+%main.row
+  - if @hashtag.mentions.empty?
+    %p No mentions yet!
+  - else
+    = render @hashtag.mentions.sort_by(&:updated_at).reverse.to_a

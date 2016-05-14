@@ -1,0 +1,19 @@
+%article.card
+  %header.header
+    - if organization.include?('logo_url')
+      = link_to organization do
+        %img.img-responsive{ src: organization.logo_url }
+    %h4.title{style: 'padding-top: 8px'}
+      = link_to organization do
+        = organization['name']
+  %main.content
+    - if organization.include?('in_References')
+      .list-group.list-group-flush
+        - organization.in_References.each do |rid|
+          - cashtag = rid.fetch
+          = link_to cashtag.text, cashtag, class: 'list-group-item small'
+    %footer.footer
+      %hr/
+      .stats
+        %i.ti-timer
+        = organization.updated_at

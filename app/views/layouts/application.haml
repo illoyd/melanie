@@ -1,0 +1,45 @@
+!!!
+%head
+  %meta{:charset => "utf-8"}/
+  %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+  %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0", :name => "viewport"}/
+  %meta{:content => "width=device-width", :name => "viewport"}/
+
+  %title
+    - if content_for? :page_title
+      = yield :page_title
+    - else
+      Hello
+    \:: melanie
+
+  = csrf_meta_tags
+  = action_cable_meta_tag
+
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+
+  %link{:href => "http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css", :rel => "stylesheet"}/
+  %link{:href => "https://fonts.googleapis.com/css?family=Muli:400,300", :rel => "stylesheet", :type => "text/css"}/
+
+  %script{:src => "https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"}
+  %script{:src => "https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"}
+
+  - if content_for? :assets
+    = yield :assets
+
+%body
+  .wrapper
+
+    / Sidebar
+    = render 'sidebar'
+
+    / Main content
+    .main-panel
+      = render 'nav'
+
+      .content
+        .container-fluid
+          = render 'flash'
+          = yield
+
+      = render 'footer'

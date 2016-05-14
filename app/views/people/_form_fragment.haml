@@ -1,0 +1,26 @@
+%fieldset
+  %legend Name
+  = f.text_field_block :full_name
+  = f.text_field_block :phonetic_full_name
+
+%fieldset
+  %legend Preferred Name
+  = f.text_field_block :preferred_name
+  = f.text_field_block :phonetic_preferred_name
+
+%fieldset
+  %legend Formal Greeting
+  = f.text_field_block :formal_greeting
+  = f.text_field_block :phonetic_formal_greeting
+
+%fieldset
+  %legend Important Dates
+  = f.text_field_block :date_of_birth
+  = f.text_field_block :anniversary
+
+- custom_attributes = f.object.document_attributes.except(*f.object.class.schema.keys)
+- if custom_attributes.any?
+  %fieldset
+    %legend Extras
+    - custom_attributes.each do |key,_|
+      = f.text_field_block key

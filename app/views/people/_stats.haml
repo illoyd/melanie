@@ -1,0 +1,33 @@
+.row
+  .col-lg-3.col-md-4.col-sm-6
+    .card
+      .content
+        .row
+          .col-xs-5
+            .icon-big.icon-success.text-center
+              %i.ti-id-badge
+          .col-xs-7
+            .numbers
+              %p Contacts
+              = @people.count
+        .footer
+          %hr/
+          .stats
+            %i.ti-reload
+            Updated now
+  .col-lg-3.col-md-4.col-sm-6
+    .card
+      .content
+        .row
+          .col-xs-5
+            .icon-big.icon-danger.text-center
+              %i.ti-pulse
+          .col-xs-7
+            .numbers
+              %p Recent Edits
+              = @people.count
+        .footer
+          %hr/
+          .stats
+            %i.ti-reload
+            Updated now

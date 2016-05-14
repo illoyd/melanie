@@ -1,0 +1,11 @@
+.card
+  .content
+    .row
+      .col-xs-5
+        .icon-big.text-center{ class: "icon-#{ content_for :color }" }
+          %i{ class: "ti-#{ content_for :icon }" }
+      .col-xs-7
+        .numbers= content_for :label
+    .footer
+      %hr/
+      .stats= content_for :footer

@@ -1,0 +1,7 @@
+- if flash.any?
+  %section#messages
+    - flash.each do |k,v|
+      - [*v].each do |message|
+        %div{ class: "alert alert-#{k}" }
+          %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button", "aria-hidden" => "true"} &times;
+          %span= message

@@ -1,0 +1,52 @@
+%article.card
+
+  %header.header
+    %h4.title
+      %i.ti-email
+      = email.subject
+    - if email.sender?
+      %p.small
+        from:
+        = link_to email.sender.full_name, email.sender
+    - if email.to_recipients?
+      %p.small
+        to:
+        - email.to_recipients.each do |recipient|
+          = link_to recipient.full_name, recipient
+    - if email.cc_recipients?
+      %p.small
+        cc:
+        - email.cc_recipients.each do |recipient|
+          = link_to recipient.full_name, recipient
+    - if email.bcc_recipients?
+      %p.small
+        bcc:
+        - email.bcc_recipients.each do |recipient|
+          = link_to recipient.full_name, recipient
+
+
+  %main.content
+    :maruku
+      #{ rewrite email.body }
+
+    %footer.footer
+      %hr/
+      = button_to(note_path(email), method: :delete, class: 'btn btn-sm btn-danger pull-right') do
+        %i.ti-trash
+        Delete
+      = link_to(edit_note_path(email), class: 'btn btn-sm btn-warning pull-right') do
+        %i.ti-pencil
+        Edit
+      .stats
+        Authored
+        - if email.created_by.present?
+          by #{ link_to email.created_by.fetch.full_name, email.created_by.fetch }
+        = timeago(email.created_at)
+
+        - if email.created_by != email.updated_by && email.created_at != email.updated_at
+          Edited
+          - if email.updated_by.present?
+            by #{ link_to email.updated_by.fetch.full_name, email.created_by.fetch }
+          #{ time_ago_in_words email.updated_at } ago.
+        -# = modal_button('Edit', email)
+        -# = render 'modal_form', object: email
