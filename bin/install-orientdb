@@ -1,2 +1,0 @@
-#!/bin/bash
-pushd ../orientdb-orm && rvm use 2.3.0@rails5.0 && bundle exec rake install && pushd

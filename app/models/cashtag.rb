@@ -1,8 +1,7 @@
-require 'orientdb/orm'
-
 ##
 # Cashtag class!
-class Cashtag < Orientdb::ORM::V
+class Cashtag
+  include ArangoDB::OGM::Vertex
 
   attribute :text, :string, validates: { presence: true }
 

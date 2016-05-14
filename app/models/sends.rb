@@ -1,15 +1,10 @@
-require 'orientdb/orm'
-
 ##
 # Sends edge. For showing who has sent an Email or other note.
-class Sends < Orientdb::ORM::E
+class Sends
+  include ArangoDB::OGM::Edge
 
-  def person
-    out_object
-  end
+  alias :person :from
 
-  def email
-    in_object
-  end
+  alias :email :to
 
 end

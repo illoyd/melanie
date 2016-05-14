@@ -70,7 +70,7 @@ class NotesController < ApplicationController
     end
 
     def set_notable
-      @notable = Orientdb::ORM::V.find(params[:person_id] || params[:organization_id])
+      @notable = Note.find(params[:person_id] || params[:organization_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

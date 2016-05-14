@@ -7,7 +7,7 @@ module ModalHelper
 
   def modal_id_for(object)
     return modal_id_for(object.last) if object.is_a?(Array)
-    id = object.persisted? ? "#{ object._rid.collection }_#{ object._rid.position }" : 'new'
+    id = object.persisted? ? "#{ object.document_handle.collection }_#{ object.document_handle.position }" : 'new'
     "#{ object.class.name.underscore }_#{ id }"
   end
 

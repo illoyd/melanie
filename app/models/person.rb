@@ -1,10 +1,9 @@
-require 'orientdb/orm'
-
 ##
 # Person class!
-class Person < Orientdb::ORM::V
-  include Orientdb::ORM::HasTimestamps
-  include Orientdb::ORM::HasEdges
+class Person
+  include ArangoDB::OGM::Vertex
+  include ArangoDB::OGM::Document::Timestamps
+#   include Orientdb::ORM::HasEdges
 
   include HasNotes
   include HasMentions
@@ -25,6 +24,6 @@ class Person < Orientdb::ORM::V
   attribute :date_of_birth, :date
   attribute :anniversary,   :date
 
-  attribute :emails, :set
+  # attribute :emails, :set
 
 end

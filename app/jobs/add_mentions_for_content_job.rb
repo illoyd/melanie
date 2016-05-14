@@ -1,8 +1,8 @@
 ##
 # Job to poll for mail, passing off to other jobs to parse.
-class AddMentionsForContentJob < WithObjectJob
+class AddMentionsForContentJob < ApplicationJob
 
-  def perform_with_object(obj)
+  def perform(obj)
     Detectors::Binder.new.bind(obj)
   end
 

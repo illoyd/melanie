@@ -1,10 +1,8 @@
-require 'orientdb/orm'
-
 # Inject decoratable into V and E
-class Orientdb::ORM::V
+module ArangoDB::OGM::Vertex
   include Draper::Decoratable
 end
 
-class Orientdb::ORM::E
+module ArangoDB::OGM::Edge
   include Draper::Decoratable
 end

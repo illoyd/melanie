@@ -5,7 +5,7 @@ namespace :db do
   task delete: :environment do
 
     # Initialize with a new database
-    db = Orientdb::ORM::Database.new
+    db = ArangoDB::API::Database.new
 
     print "Deleting #{ db.connection_uri.database }... "
     if db.exists?

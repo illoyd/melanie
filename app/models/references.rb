@@ -1,19 +1,12 @@
-require 'orientdb/orm'
-
 ##
-# Mentions class!
-class References < Orientdb::ORM::E
+# References class!
+class References
+  include ArangoDB::OGM::Edge
 
-  def target
-    @target ||= self.in.fetch
-  end
+  alias :target :to
+  alias :term :to
 
-  alias :term :target
-
-  def origin
-    @origin ||= self.out.fetch
-  end
-
-  alias :note :origin
+  alias :origin :from
+  alias :note :from
 
 end

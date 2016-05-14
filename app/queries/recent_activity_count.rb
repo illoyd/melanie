@@ -1,4 +1,4 @@
-class RecentActivityCount < Orientdb::ORM::Queries::Query
+class RecentActivityCount < ArangoDB::OGM::Queries::Base
 
   def initialize(object)
     @object = object

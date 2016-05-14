@@ -25,8 +25,9 @@ gem 'puma'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# OrientDB ORM
-gem 'orientdb-orm', '~> 0.1.1' #, git: 'https://github.com/illoyd/orientdb-orm.git', tag: 'v0.1.3'
+# ArangoDB OGM!
+gem 'arangodb-api', '~> 0.1', github: 'illoyd/arangodb-api', branch: 'develop'
+gem 'arangodb-ogm', '~> 0.1', github: 'illoyd/arangodb-ogm', branch: 'master'
 
 # Additional tools, etc.
 gem 'mail'

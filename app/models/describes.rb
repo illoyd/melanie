@@ -1,15 +1,9 @@
-require 'orientdb/orm'
-
 ##
 # Describes class!
-class Describes < Orientdb::ORM::E
-  
-  def target
-    @target ||= self.in.fetch
-  end
-  
-  def note
-    @note ||= self.out.fetch
-  end
-  
+class Describes
+  include ArangoDB::OGM::Edge
+
+  alias :target :to
+  alias :note :from
+
 end

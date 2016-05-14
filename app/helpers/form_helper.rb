@@ -10,7 +10,7 @@ module FormHelper
     return object.to_url if object.respond_to?(:to_url)
 
     base = "/#{ object.class.name.tableize }"
-    base << "/#{ object._rid.to_param }" if object.persisted?
+    base << "/#{ object.id.to_param }" if object.persisted?
     base
   end
 

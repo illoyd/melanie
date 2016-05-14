@@ -1,10 +1,9 @@
-require 'orientdb/orm'
-
 ##
 # Note class!
-class Note < Orientdb::ORM::V
-  include Orientdb::ORM::HasTimestamps
-  include Orientdb::ORM::HasEdges
+class Note
+  include ArangoDB::OGM::Vertex
+  include ArangoDB::OGM::Document::Timestamps
+#   include Orientdb::ORM::HasEdges
 
   include HasAuthors
 

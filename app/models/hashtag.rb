@@ -1,9 +1,8 @@
-require 'orientdb/orm'
-
 ##
 # Hashtag class!
-class Hashtag < Orientdb::ORM::V
-  include Orientdb::ORM::HasEdges
+class Hashtag
+#   include Orientdb::ORM::HasEdges
+  include ArangoDB::OGM::Vertex
 
   attribute :text, :string, validates: { presence: true }
 

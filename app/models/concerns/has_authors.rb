@@ -3,8 +3,8 @@ module HasAuthors
 
   included do
     # Name, kind, default, validations
-    attribute :created_by, :link,   validates: { presence: true }
-    attribute :updated_by, :link,   validates: { presence: true }
+    attribute :created_by, :document_handle,   validates: { presence: true }
+    attribute :updated_by, :document_handle,   validates: { presence: true }
 
     # Hook into callbacks
     before_validation :ensure_updated_by

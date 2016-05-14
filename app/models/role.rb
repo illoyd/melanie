@@ -1,18 +1,12 @@
-require 'orientdb/orm'
-
 ##
 # Describes class!
-class Role < Orientdb::ORM::E
-  attribute :in,    :link, default: nil, validates: { presence: true }
-  attribute :out,   :link, default: nil, validates: { presence: true }
+class Role
+  include ArangoDB::OGM::Edge
+
   attribute :title, :string
 
-  def organization
-    @organization ||= self[:in].try(:fetch)
-  end
+  alias :organization :to
 
-  def person
-    @person ||= self[:out].try(:fetch)
-  end
+  alias :person :from
 
 end

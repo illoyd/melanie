@@ -1,6 +1,6 @@
 module Queries
 
-  class RecentHashtags < Orientdb::ORM::Queries::Base
+  class RecentHashtags < ArangoDB::OGM::Queries::Base
 
     def initialize(params = {})
     end
