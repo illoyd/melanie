@@ -8,14 +8,6 @@
 
 # Create a new person
 person = Person.find_or_create_by!(full_name: 'Ian Lloyd')
-person.update!(preferred_name: 'Ian', formal_greeting: 'Mr Lloyd')
-
-# Create a new organization
-org = Organization.find_or_create_by!(name: 'Melanie Labs, Inc.')
-
-# Link person to org as president
-Role.create!(from: person, to: org, title: 'President', created_by: person)
-
 
 # Create some random people
 people = 40.times.to_a.map do
@@ -23,10 +15,10 @@ people = 40.times.to_a.map do
 end
 
 # Create some random companies
-orgs = 30.times.to_a.map do
+orgs = 20.times.to_a.map do
   Organization.find_or_create_by(name: Faker::Company.name, ein: Faker::Company.ein, duns_number: Faker::Company.duns_number, logo_url: Faker::Company.logo).tap do |org|
     effective_from = Faker::Date.backward(365*8)
-    effective_to = rand(0..5) <= 1 ? Faker::Date.between(effective_from, Date.today) : nil
-    rand(0..5).times { Role.create!(from: people.sample, to: org, title: Faker::Name.title, effective_from: effective_from, effective_to: effective_to, created_by: person) }
+    effective_to = rand(0..3) <= 2 ? Faker::Date.between(effective_from, Date.today) : nil
+    rand(0..12).times { Role.create!(from: people.sample, to: org, title: Faker::Name.title, effective_from: effective_from, effective_to: effective_to, created_by: person) }
   end
 end

@@ -5,7 +5,6 @@ class Receive
   include ArangoDB::OGM::Document::Timestamps
 
   alias :person :from
-
   alias :email :to
 
 end

@@ -27,17 +27,17 @@ class ProcessEmailJob < ApplicationJob
 
     # Save the Receives-TO edge
     find_or_init_people(missive.to_recipients).each do |recipient|
-      ToReceive.find_or_create_by!('from' => recipient, 'to' => email)
+      Receive.find_or_create_by!('from' => recipient, 'to' => email, 'type' => 'to')
     end
 
     # Save the Receives-CC edge
     find_or_init_people(missive.cc_recipients).each do |recipient|
-      CcReceive.find_or_create_by!('from' => recipient, 'to' => email)
+      Receive.find_or_create_by!('from' => recipient, 'to' => email, 'type' => 'cc')
     end
 
     # Save the Receives-BCC edge
     find_or_init_people(missive.bcc_recipients).each do |recipient|
-      BccReceive.find_or_create_by!('from' => recipient, 'to' => email)
+      Receive.find_or_create_by!('from' => recipient, 'to' => email, 'type' => 'bcc')
     end
 
     # Finally, bind the content!

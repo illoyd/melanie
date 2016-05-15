@@ -4,11 +4,13 @@
     - if person['vip']
       %p.category VIP
   .content
-    - if person.try(:out_Role)
+    - if person.try(:roles)
       %ul.list-unstyled.team-members
-        - person.out_Role.each do |rid|
-          - role = rid.fetch
-          %li= link_to "#{ role.title }, #{ role.organization.name }", role.organization
+        - person.roles.select(&:active?).each do |role|
+          %li
+            = role.title
+            %br/
+            = link_to role.organization.name, role.organization
     .footer
       %hr/
       .stats

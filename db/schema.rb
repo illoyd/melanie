@@ -23,17 +23,7 @@ Graph = [
     "to"         => [ Email.collection_name ]
   },
   {
-    "collection" => ToReceive.collection_name,
-    "from"       => [ Person.collection_name ],
-    "to"         => [ Email.collection_name ]
-  },
-  {
-    "collection" => CcReceive.collection_name,
-    "from"       => [ Person.collection_name ],
-    "to"         => [ Email.collection_name ]
-  },
-  {
-    "collection" => BccReceive.collection_name,
+    "collection" => Receive.collection_name,
     "from"       => [ Person.collection_name ],
     "to"         => [ Email.collection_name ]
   }

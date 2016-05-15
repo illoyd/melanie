@@ -5,21 +5,20 @@ class Email < Note
   attribute :message_id, :string, validates: { presence: true }
   attribute :subject, :string, validates: { presence: true }
 
-  # FIXME: Temporary patch to get through testing
-  def in_objects(*args)
-    []
-  end
-
   def sender
-    in_objects(:sends).first
+    neighbours(Send).first
   end
 
   def sender?
     sender.present?
   end
 
-  def recipients(kind = nil)
-    Set.new in_objects(:receives)
+  def recipients(type = nil)
+    if type.present?
+      edges(Receive).select { |receive| receive.type == type }.map { |receive| receive.from }
+    else
+      neighbours(Receive)
+    end
   end
 
   def recipients?
@@ -27,7 +26,7 @@ class Email < Note
   end
 
   def to_recipients
-    Set.new in_objects(:receives_to)
+    recipients('to'.freeze)
   end
 
   def to_recipients?
@@ -35,7 +34,7 @@ class Email < Note
   end
 
   def cc_recipients
-    Set.new in_objects(:receives_cc)
+    recipients('cc'.freeze)
   end
 
   def cc_recipients?
@@ -43,7 +42,7 @@ class Email < Note
   end
 
   def bcc_recipients
-    Set.new in_objects(:receives_bcc)
+    recipients('bcc'.freeze)
   end
 
   def bcc_recipients?

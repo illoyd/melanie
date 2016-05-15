@@ -4,7 +4,7 @@
     %h4.title
       %i.ti-email
       = email.subject
-    - if email.sender?
+    - if email.sender
       %p.small
         from:
         = link_to email.sender.full_name, email.sender
