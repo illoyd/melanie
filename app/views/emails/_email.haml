@@ -26,8 +26,8 @@
 
 
   %main.content
-    :maruku
-      #{ rewrite email.body }
+    %pre
+      = rewrite email.body
 
     %footer.footer
       %hr/

@@ -16,51 +16,53 @@ class ProcessEmailJob < ApplicationJob
     email = find_or_init_email(missive)
 
     # Update the note creator
-    email.created_by = find_or_init_sender(missive)
+    email.created_by = find_or_create_sender(missive)
     email.created_at = missive.date
 
     # Save people and the email
     email.save!
 
-    # Save the sender edge
-    Send.find_or_create_by!('from' => find_or_init_sender(missive), 'to' => email)
+    # Find and save the sender
+    find_or_create_senders(email, missive.senders)
 
-    # Save the Receives-TO edge
-    find_or_init_people(missive.to_recipients).each do |recipient|
-      Receive.find_or_create_by!('from' => recipient, 'to' => email, 'type' => 'to')
-    end
-
-    # Save the Receives-CC edge
-    find_or_init_people(missive.cc_recipients).each do |recipient|
-      Receive.find_or_create_by!('from' => recipient, 'to' => email, 'type' => 'cc')
-    end
-
-    # Save the Receives-BCC edge
-    find_or_init_people(missive.bcc_recipients).each do |recipient|
-      Receive.find_or_create_by!('from' => recipient, 'to' => email, 'type' => 'bcc')
-    end
+    # Find and save all recipients
+    find_or_create_recipients(email, missive.to_recipients, 'to')
+    find_or_create_recipients(email, missive.cc_recipients, 'cc')
+    find_or_create_recipients(email, missive.bcc_recipients, 'bcc')
 
     # Finally, bind the content!
     AddMentionsForContentJob.new.perform(email)
   end
 
-  def find_or_init_person(email, full_name)
+  def find_or_create_senders(email, recipients)
+    find_or_create_people(recipients).each do |recipient|
+      Send.find_or_create_by!('_from' => recipient.document_handle, '_to' => email.document_handle)
+    end
+  end
+
+  def find_or_create_recipients(email, recipients, type)
+    find_or_create_people(recipients).each do |recipient|
+      Receive.find_or_create_by!('_from' => recipient.document_handle, '_to' => email.document_handle, 'type' => type)
+    end
+  end
+
+  def find_or_create_person(email, full_name)
     @person_cache[email] ||= Person.find_or_initialize_by(email: email).tap do |person|
       person.full_name ||= full_name || 'Anonymous'
       person.save!
     end
   end
 
-  def find_or_init_person_by_address(address)
-    find_or_init_person(address.address, address.display_name || address.name || address.local)
+  def find_or_create_person_by_address(address)
+    find_or_create_person(address.address, address.display_name || address.name || address.local)
   end
 
-  def find_or_init_people(address_list)
-    address_list.each_with_object(Set.new) { |address,list| list << find_or_init_person_by_address(address) }
+  def find_or_create_people(address_list)
+    address_list.each_with_object(Set.new) { |address,list| list << find_or_create_person_by_address(address) }
   end
 
-  def find_or_init_sender(missive)
-    find_or_init_person(missive.sender_email, missive.sender_name)
+  def find_or_create_sender(missive)
+    find_or_create_person(missive.sender_email, missive.sender_name)
   end
 
   def find_or_init_email(missive)
@@ -69,12 +71,7 @@ class ProcessEmailJob < ApplicationJob
       # Save the subject and body
       email.subject = missive.subject
       email.body    = missive.body
-
-      # Link the recipients
-      people = find_or_init_people(missive.to_recipients)
-      email.to_recipients.merge( find_or_init_people(missive.to_recipients) )
-      email.cc_recipients.merge( find_or_init_people(missive.cc_recipients) )
-      email.bcc_recipients.merge( find_or_init_people(missive.bcc_recipients) )
+      email.created_at = missive.date
 
     end
   end

@@ -1,0 +1,88 @@
+Delivered-To: ian.w.lloyd@gmail.com
+Received: by 10.64.245.170 with SMTP id xp10csp899355iec;
+        Thu, 5 May 2016 10:36:07 -0700 (PDT)
+X-Received: by 10.202.181.131 with SMTP id e125mr6769656oif.12.1462469767135;
+        Thu, 05 May 2016 10:36:07 -0700 (PDT)
+Return-Path: <ledo.j.rocchi@gmail.com>
+Received: from mail-oi0-x22d.google.com (mail-oi0-x22d.google.com. [2607:f8b0:4003:c06::22d])
+        by mx.google.com with ESMTPS id f17si4604332oig.175.2016.05.05.10.36.07
+        for <Ian.w.lloyd@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 05 May 2016 10:36:07 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ledo.j.rocchi@gmail.com designates 2607:f8b0:4003:c06::22d as permitted sender) client-ip=2607:f8b0:4003:c06::22d;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com;
+       spf=pass (google.com: domain of ledo.j.rocchi@gmail.com designates 2607:f8b0:4003:c06::22d as permitted sender) smtp.mailfrom=ledo.j.rocchi@gmail.com;
+       dmarc=pass (p=NONE dis=NONE) header.from=gmail.com
+Received: by mail-oi0-x22d.google.com with SMTP id k142so106203788oib.1
+        for <Ian.w.lloyd@gmail.com>; Thu, 05 May 2016 10:36:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:date:message-id:subject:from:to;
+        bh=ioQ7n42agpFIWNdCBMTyGxnTMoAyxJR8pYxMyachQ0Y=;
+        b=OyjYRogdfzKiuWLhW8cUU39nvL8U1iifvQJJ+uBI7aUpk+Tb0c3Az7Dy9iDompyHUY
+         We9PoF7yPkgkDajZYXG+46wpbvtPpZtFTFyjtvT/Aag06tWZRqL3mhSgmOJMU/wxV2SS
+         0yid4F+cPUPdCN6Zeu6San6vB4iGUXCn8jez4tSToQ8bFK80Q4vi4Wt8ESBiZ4Gu2X4S
+         OEe1XwJCSRZ9DvcU/oyF9TlGs6TScYiN0Ojp+DO9eG0ZHr7WGOu0QCs14Zj7AyY6PLQp
+         LtA+ja/l4Is0hiQH7XxSxpbwzzZ4oMl04XAwd2eAdjXVTRYodxDR+2xBX7YWM1RRd9Za
+         jOiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+        bh=ioQ7n42agpFIWNdCBMTyGxnTMoAyxJR8pYxMyachQ0Y=;
+        b=QUHpyyv+VRzzHjMDXCT6xyW9aj3+uZUAfpR1McOiaR5QQLN30X8CT2BgmUx2pJ0Szn
+         CSKsR8Fp88m+P/ua2Ys5i9i9SclMaGGOA0BbjTNC5bxg6pX2578MLtxR0nGuUFPBkl5T
+         DeJOZzLd6nuwjO1pXugHaxBQVslFEm59JtUawUmH0XMiWmx+n1Cee2yK5QYIx+FOp6dX
+         nPfNC05KoyL+OZrRCzx+Wf59XBKLb7APZe+Zpy1ph+sp4jTfHnhJ+uqiF7/6wi+HgtpU
+         yNVz5yv1QUTBBudxQVNoC8Aoheo5lPY8tXQbPHKxgdykupillntb8ABlFZqkblWGST4S
+         NF+w==
+X-Gm-Message-State: AOPr4FWhO9neCwzGuKak+InR2UP0RhH16uWuRAHHUJuJFIhS26cPgFx4bLasxKaSSe0n09oIO5TnV8hDKPjosw==
+MIME-Version: 1.0
+X-Received: by 10.202.4.213 with SMTP id 204mr1607069oie.47.1462469766951;
+ Thu, 05 May 2016 10:36:06 -0700 (PDT)
+Received: by 10.60.83.167 with HTTP; Thu, 5 May 2016 10:36:06 -0700 (PDT)
+Date: Thu, 5 May 2016 18:36:06 +0100
+Message-ID: <CAAQJKsLC3be=Yzs0s7=tO_PCnD9EnQW+W1-SwBc6dtr67NvvZA@mail.gmail.com>
+Subject: Rated people leads
+From: Ledo Junior Rocchi <ledo.j.rocchi@gmail.com>
+To: Ian.w.lloyd@gmail.com
+Content-Type: multipart/alternative; boundary=001a113b3b50f43a2205321bc6ec
+
+--001a113b3b50f43a2205321bc6ec
+Content-Type: text/plain; charset=UTF-8
+
+I bought a little ago, your listing about your floor.
+I would be happy to be able to help in solving this problem ...
+I've already been dealing with this problem and I'm ready for you.
+I hope to hear from you and to be able to make an inspection in order to
+help you.
+My contacts are:
+ledo.j.rocchi@gmail.com (my personal e-mail)
+beebuilderinfo@gmail.com
+++ 447 958 462 067
+
+I'm available at any time for you
+
+regards,
+Ledo
+
+( late in the evening I'll send you some photo about my previous job as
+your now )
+
+--001a113b3b50f43a2205321bc6ec
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I bought a little ago, your listing about your floor.=
+</div><div>I would be happy to be able to help in solving this problem ...<=
+/div><div>I&#39;ve already been dealing with this problem and I&#39;m ready=
+ for you.</div><div>I hope to hear from you and to be able to make an inspe=
+ction in order to help you.</div><div>My contacts are:</div><div><a href=3D=
+"mailto:ledo.j.rocchi@gmail.com">ledo.j.rocchi@gmail.com</a> (my personal e=
+-mail)</div><div><a href=3D"mailto:beebuilderinfo@gmail.com">beebuilderinfo=
+@gmail.com</a>=C2=A0</div><div>++ 447 958 462 067</div><div><br></div><div>=
+I&#39;m available at any time for you</div><div><br></div><div>regards,</di=
+v><div>Ledo</div><div><br></div><div>( late in the evening I&#39;ll send yo=
+u some photo about my previous job as your now )</div></div>
+
+--001a113b3b50f43a2205321bc6ec--

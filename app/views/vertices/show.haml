@@ -19,6 +19,10 @@
           %li.nav-item
             %a.nav-link{"data-toggle" => "tab", :href => "#about", :role => "tab"} About
 
+          - if vertex.wikipedia?
+            %li.nav-item
+              %a.nav-link{"data-toggle" => "tab", :href => "#wikipedia", :role => "tab"} Wikipedia
+
           - if vertex.respond_to?(:roles)
             %li.nav-item
               %a.nav-link{"data-toggle" => "tab", :href => "#roles", :role => "tab"} Roles
@@ -41,6 +45,9 @@
         #timeline.tab-pane.fade.in.active{:role => "tabpanel"}= render partial: 'vertices/timeline', object: vertex, as: :vertex
 
       #about.tab-pane.fade{role: 'tabpanel'}= render partial: 'about', object: vertex, as: :vertex
+
+      - if vertex.wikipedia?
+        #wikipedia.tab-pane.fade{:role => "tabpanel"}= vertex.wikipedia_page
 
       - if vertex.respond_to?(:roles)
         #roles.tab-pane.fade{:role => "tabpanel"}= render partial: 'roles/tab', object: vertex, as: :vertex

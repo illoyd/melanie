@@ -1,6 +1,10 @@
 class EmailDecorator < Draper::Decorator
   delegate_all
 
+  def senders
+    object[:from].try!(:address_list).try!(:addresses) || []
+  end
+
   ## The sender friendly (display) name
   def sender_name
     object[:from].display_names.first #|| object[:from].
@@ -22,7 +26,11 @@ class EmailDecorator < Draper::Decorator
   end
 
   def multipart_body
-    'MULTIPART'
+    [
+      object.try(:preamble),
+      *object.parts.select { |p| puts p.content_type; p.content_type.downcase.start_with? 'text/plain' },
+      object.try(:epilogue)
+    ].join("\n")
   end
 
   def unipart_body
