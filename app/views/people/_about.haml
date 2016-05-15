@@ -1,5 +1,8 @@
-.row
-  .col-sm-6.col-lg-12
+= person.important_dates
+= person.date_of_birth.acts_like?(:date)
+
+#about-tab.row
+  .col-xs-12.col-sm-6
     / About Card
     %aside.card
       .header
@@ -29,28 +32,18 @@
           %dt Phonetic Formal Greeting
           %dd= person.phonetic_formal_greeting
 
-  - if person.roles.any?
-    .col-sm-6.col-lg-12
-      / Roles Card
+  - if person.important_dates.any?
+    .col-xs-12.col-sm-6
+      / Important Dates Card
       %aside.card
-        %header.header
-          %h4.title Roles
-        %main.content
-          %ul.list-unstyled.team-members
-            - person.roles.each do |role|
-              %li= link_to "#{ role.title }, #{ role.organization.name }", role.organization
-
-  .col-sm-6.col-lg-12
-    / Important Dates Card
-    %aside.card
-      .header
-        %h4.title Important Dates
-      .content
-        %dl
-          - person.important_dates.each do |key, value|
-            - if value.present?
-              %dt= key.to_s.humanize
-              %dd= value
+        .header
+          %h4.title Important Dates
+        .content
+          %dl
+            - person.important_dates.each do |key, value|
+              - if value.present?
+                %dt= key.to_s.humanize
+                %dd= value
 
 .row
   .col-xs-12
@@ -65,3 +58,23 @@
             - if value.present?
               %dt= key.to_s.humanize
               %dd= value
+
+:javascript
+  // init Masonry
+  var $aboutGrid = $('#about-tab').masonry({
+    // options...
+  });
+  // layout Masonry after each image loads
+  $aboutGrid.imagesLoaded().progress( function() {
+    $aboutGrid.masonry('layout');
+  });
+
+  $('a[data-toggle=tab]').each(function () {
+    var $this = $(this);
+
+    $this.on('shown.bs.tab', function () {
+      $aboutGrid.imagesLoaded( function () {
+        $aboutGrid.masonry('layout');
+      });
+    });
+  });

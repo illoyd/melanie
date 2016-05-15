@@ -6,51 +6,50 @@
 
 %section
   .row
-    .col-lg-8.col-md-12
 
-      / Tabs
-      .nav-tabs-navigation
-        .nav-tabs-wrapper
-          %ul.nav.nav-tabs{:role => "tablist"}
+    / Tabs
+    .nav-tabs-navigation
+      .nav-tabs-wrapper
+        %ul.nav.nav-tabs{:role => "tablist"}
 
-            - if vertex.respond_to?(:recent_activity)
-              %li.nav-item.active
-                %a.nav-link.active{"data-toggle" => "tab", :href => "#timeline", :role => "tab"} Timeline
+          - if vertex.respond_to?(:recent_activity)
+            %li.nav-item.active
+              %a.nav-link.active{"data-toggle" => "tab", :href => "#timeline", :role => "tab"} Timeline
 
+          %li.nav-item
+            %a.nav-link{"data-toggle" => "tab", :href => "#about", :role => "tab"} About
+
+          - if vertex.respond_to?(:roles)
             %li.nav-item
-              %a.nav-link{"data-toggle" => "tab", :href => "#about", :role => "tab"} About
+              %a.nav-link{"data-toggle" => "tab", :href => "#roles", :role => "tab"} Roles
 
-            - if vertex.respond_to?(:roles)
-              %li.nav-item
-                %a.nav-link{"data-toggle" => "tab", :href => "#roles", :role => "tab"} Roles
+          - if vertex.respond_to?(:notes)
+            %li.nav-item
+              %a.nav-link{"data-toggle" => "tab", :href => "#notes", :role => "tab"} Notes
 
-            - if vertex.respond_to?(:notes)
-              %li.nav-item
-                %a.nav-link{"data-toggle" => "tab", :href => "#notes", :role => "tab"} Notes
+          - if vertex.respond_to?(:meetings)
+            %li.nav-item
+              %a.nav-link{"data-toggle" => "tab", :href => "#meetings", :role => "tab"} Meetings
 
-            - if vertex.respond_to?(:meetings)
-              %li.nav-item
-                %a.nav-link{"data-toggle" => "tab", :href => "#meetings", :role => "tab"} Meetings
+          - if vertex.respond_to?(:mentions)
+            %li.nav-item
+              %a.nav-link{"data-toggle" => "tab", :href => "#mentions", :role => "tab"} Mentions
 
-            - if vertex.respond_to?(:mentions)
-              %li.nav-item
-                %a.nav-link{"data-toggle" => "tab", :href => "#mentions", :role => "tab"} Mentions
+    / Contents
+    .tab-content
+      - if vertex.respond_to?(:recent_activity)
+        #timeline.tab-pane.fade.in.active{:role => "tabpanel"}= render partial: 'vertices/timeline', object: vertex, as: :vertex
 
-      / Contents
-      .tab-content
-        - if vertex.respond_to?(:recent_activity)
-          #timeline.tab-pane.fade.in.active{:role => "tabpanel"}= render partial: 'vertices/timeline', object: vertex, as: :vertex
+      #about.tab-pane.fade{role: 'tabpanel'}= render partial: 'about', object: vertex, as: :vertex
 
-        #about.tab-pane.fade{role: 'tabpanel'}= render partial: 'about', object: vertex, as: :vertex
+      - if vertex.respond_to?(:roles)
+        #roles.tab-pane.fade{:role => "tabpanel"}= render partial: 'roles/tab', object: vertex, as: :vertex
 
-        - if vertex.respond_to?(:roles)
-          #roles.tab-pane.fade{:role => "tabpanel"}= render partial: 'roles/tab', object: vertex, as: :vertex
+      - if vertex.respond_to?(:notes)
+        #notes.tab-pane.fade{:role => "tabpanel"}= render partial: 'notes/tab', object: vertex, as: :has_notes
 
-        - if vertex.respond_to?(:notes)
-          #notes.tab-pane.fade{:role => "tabpanel"}= render partial: 'notes/tab', object: vertex, as: :has_notes
+      - if vertex.respond_to?(:meetings)
+        #meetings.tab-pane.fade{:role => "tabpanel"} Meetings
 
-        - if vertex.respond_to?(:meetings)
-          #meetings.tab-pane.fade{:role => "tabpanel"} Meetings
-
-        - if vertex.respond_to?(:mentions)
-          #mentions.tab-pane.fade{:role => "tabpanel"}= render partial: 'mentions/tab', object: vertex, as: :has_mentions
+      - if vertex.respond_to?(:mentions)
+        #mentions.tab-pane.fade{:role => "tabpanel"}= render partial: 'mentions/tab', object: vertex, as: :has_mentions

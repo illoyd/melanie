@@ -12,7 +12,7 @@ class PersonDecorator < Draper::Decorator
 
   def important_dates
     object.attributes.select do |k,v|
-      v.is_a?(Time) && !['created_at', 'updated_at'].include?(k)
+      v.acts_like?(:date) && !['created_at', 'updated_at'].include?(k)
     end
   end
 
