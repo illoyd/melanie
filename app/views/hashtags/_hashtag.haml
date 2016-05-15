@@ -1,5 +1,6 @@
 %article.card
   %main.content
     = link_to hashtag, class: 'btn-block' do
+      %span.ti-tag
       = hashtag.text
       %span.label.label-info= hashtag.mentions.count
