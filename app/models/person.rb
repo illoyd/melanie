@@ -8,6 +8,7 @@ class Person
   include HasMentions
   include HasRoles
   include HasRecentActivity
+  include HasWikipedia
 
   attribute :full_name, :string, validates: { presence: true }, normalizes: :default
   attribute :phonetic_full_name, :string, normalizes: :default
@@ -23,6 +24,6 @@ class Person
   attribute :date_of_birth, :date
   attribute :anniversary,   :date
 
-  # attribute :emails, :set
+  attribute :email, :string, normalizes: [:strip, :blank, ->(val){ val.try(:downcase) || val }]
 
 end

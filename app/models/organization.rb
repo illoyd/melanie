@@ -6,6 +6,7 @@ class Organization
 
   include HasNotes
   include HasMentions
+  include HasWikipedia
 
   # Name, kind, default, validates
   attribute :name, :string

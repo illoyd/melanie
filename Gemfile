@@ -38,6 +38,7 @@ gem 'maruku'
 gem 'sass'
 gem 'colorize'
 gem 'twitter-text'
+gem 'mediawiki_api'
 
 # Activate draper gem
 gem 'activemodel-serializers-xml', git: 'https://github.com/rails/activemodel-serializers-xml', ref: 'ad5ff3a'
