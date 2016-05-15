@@ -4,7 +4,7 @@
     Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
   .sidebar-wrapper
     .logo
-      = link_to('Melanie', root_path, class: 'simple-text')
+      = link_to(current_user.full_name, root_path, class: 'simple-text')
     %ul.nav
       %li{ class: ('active' if controller.controller_name == 'search') }
         = link_to '/search' do
