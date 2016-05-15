@@ -1,7 +1,7 @@
 require 'colorize'
 
 namespace :db do
-  desc 'Drop the Orientdb database if it exists'
+  desc 'Drop the Arangodb database if it exists'
   task delete: :environment do
 
     # Initialize with a new database

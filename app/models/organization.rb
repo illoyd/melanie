@@ -3,7 +3,6 @@
 class Organization
   include ArangoDB::OGM::Vertex
   include ArangoDB::OGM::Document::Timestamps
-#   include Orientdb::ORM::HasEdges
 
   include HasNotes
   include HasMentions

@@ -1,7 +1,6 @@
 ##
 # Email class, an instance of a Note. Includes additional features for emails.
 class Email < Note
-#   include Orientdb::ORM::HasEdges
 
   attribute :message_id, :string, validates: { presence: true }
   attribute :subject, :string, validates: { presence: true }
