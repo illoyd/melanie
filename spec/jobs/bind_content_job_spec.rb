@@ -35,7 +35,7 @@ RSpec.describe AddMentionsForContentJob, :with_database do
       subject.perform(content_object)
       content_object.reload!
       expect( content_object.mentions ).not_to be_blank
-      expect( content_object.mentions.map { |mention_id| mention_id.fetch.target.text } ).to match_array(%w( hashtags hashtagsforlife reallycool ))
+      expect( content_object.mentions.map { |mention| mention.text } ).to match_array(%w( hashtags hashtagsforlife reallycool ))
     end
   end # with new hashtags
 

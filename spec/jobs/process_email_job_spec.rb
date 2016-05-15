@@ -8,11 +8,11 @@ RSpec.describe ProcessEmailJob, :with_database do
   end
 
   it 'creates the FROM sender' do
-    expect{ subject.perform(message) }.to change{ Person.find_by(emails: ['ian.w.lloyd@gmail.com']) }.from(nil)
+    expect{ subject.perform(message) }.to change{ Person.find_by(email: 'ian.w.lloyd@gmail.com') }.from(nil)
   end
 
   it 'creates the TO recipient' do
-    expect{ subject.perform(message) }.to change{ Person.find_by(emails: ['ian.w.lloyd+mel@gmail.com']) }.from(nil)
+    expect{ subject.perform(message) }.to change{ Person.find_by(email: 'ian.w.lloyd+mel@gmail.com') }.from(nil)
   end
 
 end

@@ -1,7 +1,8 @@
 ENV['ARANGODB_PROVIDER'] = 'ARANGODB_TEST'
-ENV['ARANGODB_GRAPH'] = 'melanie_test'
+ArangoDB::OGM.client.uri = ENV['ARANGODB_URI'] = ENV[ENV['ARANGODB_PROVIDER']]
+ArangoDB::OGM.graph_name = ENV['ARANGODB_GRAPH'] = 'melanie_test'
 
-$strategy = ArangoDB::Test::Strategy.new(client: ArangoDB::Client.new)
+$strategy = ArangoDB::Test::Strategy.new(client: ArangoDB::OGM.client)
 
 RSpec.configure do |config|
   config.before(:suite) { $strategy.before_suite }

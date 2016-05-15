@@ -45,9 +45,8 @@ class ProcessEmailJob < ApplicationJob
   end
 
   def find_or_init_person(email, full_name)
-    @person_cache[email] ||= Person.find_or_initialize_by(emails: [email]).tap do |person|
+    @person_cache[email] ||= Person.find_or_initialize_by(email: email).tap do |person|
       person.full_name ||= full_name || 'Anonymous'
-      person.emails << email
       person.save!
     end
   end

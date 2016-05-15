@@ -1,10 +1,10 @@
-module HasMentions
+module HasHashtags
   extend ActiveSupport::Concern
 
   included do
 
-    def mentions
-      neighbours(Mention)
+    def hashtags
+      in_neighbours(Mention)
     end
 
   end
