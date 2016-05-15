@@ -11,7 +11,7 @@ class Note
   attribute :body, :string, validates: { presence: true }
 
   def describes
-    out_neighbours(Describe)
+    neighbours(Describe)
   end
 
 end
