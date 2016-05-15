@@ -1,1 +1,28 @@
-%p #{ role.title } at #{ role.to.name }
+%article.card
+
+  %header.header
+    %h4.title
+      %i.ti-comment-alt
+      = role.title
+
+  %main.content
+    #{ link_to role.person.full_name, role.person } at #{ link_to role.organization.name, role.organization }
+    - if role.effective_from.present? || role.effective_to.present?
+      %p
+        Effective
+        - if role.effective_from.present?
+          from #{ role.effective_from }
+        - if role.effective_to.present?
+          to #{ role.effective_to }
+
+    %footer.footer
+      %hr/
+      -#
+        = button_to(role, method: :delete, class: 'btn btn-sm btn-danger pull-right') do
+          %i.ti-trash
+          Delete
+        = link_to(edit_note_path(role), class: 'btn btn-sm btn-warning pull-right') do
+          %i.ti-pencil
+          Edit
+      .stats
+        = render partial: 'authorship', object: role

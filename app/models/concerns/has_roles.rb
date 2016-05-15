@@ -4,10 +4,10 @@ module HasRoles
   included do
 
     def roles
-      out_neighbours(:roles)
+      edges(Role)
     end
 
-    end
+  end
 
   class_methods do
   end

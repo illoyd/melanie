@@ -1,0 +1,10 @@
+Added
+- if authorship.created_by.present?
+  by #{ link_to authorship.created_by.full_name, authorship.created_by }
+= timeago(authorship.created_at)
+
+- if authorship.created_by != authorship.updated_by && authorship.created_at != authorship.updated_at
+  Edited
+  - if authorship.updated_by.present?
+    by #{ link_to authorship.updated_by.full_name, authorship.updated_by }
+  #{ time_ago_in_words authorship.updated_at } ago.

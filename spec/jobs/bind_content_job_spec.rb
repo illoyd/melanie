@@ -23,19 +23,19 @@ RSpec.describe AddMentionsForContentJob, :with_database do
     end
 
     it 'creates new mentions' do
-      expect( content_object['out_Mentions'] ).to be_nil
+      expect( content_object.mentions ).to be_blank
       subject.perform(content_object)
       content_object.reload!
-      expect( content_object['out_Mentions'] ).not_to be_nil
-      expect( content_object['out_Mentions'].count ).to eq(3)
+      expect( content_object.mentions ).not_to be_blank
+      expect( content_object.mentions.count ).to eq(3)
     end
 
     it 'links hashtags via mentions' do
-      expect( content_object['out_Mentions'] ).to be_nil
+      expect( content_object.mentions ).to be_blank
       subject.perform(content_object)
       content_object.reload!
-      expect( content_object['out_Mentions'] ).not_to be_nil
-      expect( content_object['out_Mentions'].map { |mention_id| mention_id.fetch.target.text } ).to match_array(%w( hashtags hashtagsforlife reallycool ))
+      expect( content_object.mentions ).not_to be_blank
+      expect( content_object.mentions.map { |mention_id| mention_id.fetch.target.text } ).to match_array(%w( hashtags hashtagsforlife reallycool ))
     end
   end # with new hashtags
 

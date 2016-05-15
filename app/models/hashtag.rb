@@ -6,7 +6,7 @@ class Hashtag
   attribute :text, :string, validates: { presence: true }
 
   def mentions
-    inbound_neighbours(Mentions.collection_name)
+    inbound_neighbours(Mention.collection_name)
   end
 
 end

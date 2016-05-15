@@ -4,7 +4,7 @@ module HasNotes
   included do
 
     def notes
-      in_neighbours(:describes)
+      in_neighbours(Describe)
     end
 
   end

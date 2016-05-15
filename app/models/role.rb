@@ -2,11 +2,20 @@
 # Describes class!
 class Role
   include ArangoDB::OGM::Edge
+  include ArangoDB::OGM::Document::Timestamps
+
+  include HasAuthors
 
   attribute :title, :string
 
-  alias :organization :to
+  attribute :effective_from, :date
+  attribute :effective_to, :date
 
+  alias :organization :to
   alias :person :from
+
+  def active?
+    effective_to.blank? || effective_to >= Date.today
+  end
 
 end

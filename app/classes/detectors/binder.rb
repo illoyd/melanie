@@ -46,7 +46,7 @@ module Detectors
     end
 
     def mentions(obj, target, entity)
-      Mentions.find_or_create_by!('from' => obj, 'to' => target, position_start: entity.position_start, position_end: entity.position_end)
+      Mention.find_or_create_by!('from' => obj, 'to' => target, position_start: entity.position_start, position_end: entity.position_end)
     end
 
   end

@@ -16,7 +16,7 @@ class RecentActivity < BaseQuery
   end
 
   def to_aql
-    "FOR v, e IN #{ direction } '#{ handle }' GRAPH '#{ ArangoDB::OGM.graph_name }' SORT e.updated_at ASC RETURN { e: e, v: v }"
+    "FOR v, e IN #{ direction } '#{ handle }' GRAPH '#{ ArangoDB::OGM.graph_name }' SORT e.updated_at DESC RETURN { e: e, v: v }"
   end
 
   def execute

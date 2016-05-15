@@ -44,7 +44,7 @@
         #about.tab-pane.fade{role: 'tabpanel'}= render partial: 'about', object: vertex, as: :vertex
 
         - if vertex.respond_to?(:roles)
-          #roles.tab-pane.fade{:role => "tabpanel"} Roles
+          #roles.tab-pane.fade{:role => "tabpanel"}= render partial: 'roles/tab', object: vertex, as: :vertex
 
         - if vertex.respond_to?(:notes)
           #notes.tab-pane.fade{:role => "tabpanel"}= render partial: 'notes/tab', object: vertex, as: :has_notes

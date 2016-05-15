@@ -13,4 +13,4 @@ person = Person.find_or_create_by!(full_name: 'Ian Lloyd', preferred_name: 'Ian'
 org = Organization.find_or_create_by!(name: 'Melanie Labs, Inc.')
 
 # Link person to org as president
-Role.create!(from: person, to: org, title: 'President')
+Role.create!(from: person, to: org, title: 'President', created_by: person)

@@ -35,10 +35,10 @@ class NotesController < ApplicationController
     end
 
     if @note.save! && @notable.present?
-      Describes.new(to: @notable, from: @note).save!
+      Describe.new(to: @notable, from: @note).save!
     end
 
-    AddMentionsForContentJob.perform_later(@note.id.to_s)
+    AddMentionsForContentJob.perform_later(@note)
     respond_with @notable
   end
 
@@ -47,7 +47,8 @@ class NotesController < ApplicationController
   def update
     @note.update(note_params)
     AddMentionsForContentJob.perform_later(@note.id.to_s)
-    respond_with @note.out_Describes.first.fetch.target
+    # TODO: Fix this update query!
+    respond_with @note.out_Describe.first.fetch.target
   end
 
   # DELETE /notes/1
@@ -68,7 +69,11 @@ class NotesController < ApplicationController
     end
 
     def set_notable
-      @notable = Person.find(params[:person_id]) || Organization.find(params[:organization_id])
+      @notable = if params[:person_id].present?
+        Person.find(params[:person_id])
+      elsif params[:organization_id].present?
+        Organization.find(params[:organization_id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

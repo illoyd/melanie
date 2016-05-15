@@ -1,0 +1,12 @@
+- active_roles = vertex.roles.select(&:active?).sort_by(&:effective_to).reverse
+- inactive_roles = vertex.roles.select { |r| !r.active? }.sort_by(&:effective_to).reverse
+
+- if active_roles.any?
+  %section.activeRoles
+    %h3 Active
+    = render active_roles
+
+- if inactive_roles.any?
+  %section.inactiveRoles
+    %h3 Inactive
+    = render inactive_roles

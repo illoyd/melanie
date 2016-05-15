@@ -10,7 +10,11 @@ class Note
   attribute :body, :string, validates: { presence: true }
 
   def describes
-    out_neighbours(:describes)
+    out_neighbours(Describe)
+  end
+
+  def mentions
+    out_neighbours(Mention)
   end
 
 end

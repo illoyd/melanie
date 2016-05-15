@@ -4,7 +4,7 @@ module HasMentions
   included do
 
     def mentions
-      in_neighbours(:mentions)
+      in_neighbours(Mention)
     end
 
   end

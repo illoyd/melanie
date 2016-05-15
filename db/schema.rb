@@ -8,32 +8,32 @@ Graph = [
     "to"         => [ Organization.collection_name ]
   },
   {
-    "collection" => Describes.collection_name,
+    "collection" => Describe.collection_name,
     "from"       => [ Note.collection_name, Email.collection_name ],
     "to"         => [ Person.collection_name, Organization.collection_name ]
   },
   {
-    "collection" => Mentions.collection_name,
+    "collection" => Mention.collection_name,
     "from"       => [ Note.collection_name, Email.collection_name ],
     "to"         => [ Hashtag.collection_name, Cashtag.collection_name ]
   },
   {
-    "collection" => Sends.collection_name,
+    "collection" => Send.collection_name,
     "from"       => [ Person.collection_name ],
     "to"         => [ Email.collection_name ]
   },
   {
-    "collection" => ReceivesTo.collection_name,
+    "collection" => ToReceive.collection_name,
     "from"       => [ Person.collection_name ],
     "to"         => [ Email.collection_name ]
   },
   {
-    "collection" => ReceivesCc.collection_name,
+    "collection" => CcReceive.collection_name,
     "from"       => [ Person.collection_name ],
     "to"         => [ Email.collection_name ]
   },
   {
-    "collection" => ReceivesBcc.collection_name,
+    "collection" => BccReceive.collection_name,
     "from"       => [ Person.collection_name ],
     "to"         => [ Email.collection_name ]
   }
@@ -53,7 +53,7 @@ Edges.each do |collection|
 end
 
 if ArangoDB::OGM.graph.exists?
-  ArangoDB::OGM.graph.update("edgeDefinitions" => Graph)
+  # ArangoDB::OGM.graph.update("edgeDefinitions" => Graph)
 else
   ArangoDB::OGM.graph.create("edgeDefinitions" => Graph)
 end
