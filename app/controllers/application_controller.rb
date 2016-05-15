@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def current_user
-    @current_user ||= Person.find(7593180196)
+    @current_user ||= Person.first
   end
 
 end

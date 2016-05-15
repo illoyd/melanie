@@ -10,11 +10,11 @@ module HasAuthors
     before_validation :ensure_updated_by
 
     def created_by
-      @cached_created_by ||= self.attribute('created_by').fetch
+      @cached_created_by ||= self.attribute('created_by').try(:fetch)
     end
 
     def updated_by
-      @cached_updated_by ||= self.attribute('updated_by').fetch
+      @cached_updated_by ||= self.attribute('updated_by').try(:fetch)
     end
 
     protected

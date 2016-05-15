@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: git://github.com/illoyd/arangodb-ogm.git
-  revision: a782f6f7e8769c58d3481119e3d811acc388bbf9
+  revision: 416a7acad003e8e9e800041675d16786242ad42a
   branch: develop
   specs:
     arangodb-ogm (0.1.0)
