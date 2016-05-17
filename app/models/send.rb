@@ -2,7 +2,7 @@
 # Sends edge. For showing who has sent an Email or other note.
 class Send
   include ArangoDB::OGM::Edge
-  include ArangoDB::OGM::Document::Timestamps
+  include ArangoDB::OGM::Model::Timestamps
 
   alias :person :from
 

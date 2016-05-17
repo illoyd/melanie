@@ -2,7 +2,7 @@
 # Describes class!
 class Role
   include ArangoDB::OGM::Edge
-  include ArangoDB::OGM::Document::Timestamps
+  include ArangoDB::OGM::Model::Timestamps
 
   include HasAuthors
 

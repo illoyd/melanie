@@ -21,8 +21,8 @@ class RecentActivity < BaseQuery
 
   def execute
     ArangoDB::OGM.client('_api/cursor').post('query' => self.to_aql).result.map do |path|
-      edge = ArangoDB::OGM.build(path['e'])
-      vertex = ArangoDB::OGM.build(path['v'])
+      edge = ArangoDB::OGM::Model.build(path['e'])
+      vertex = ArangoDB::OGM::Model.build(path['v'])
       if edge._from == start.document_handle
         edge.from = start
         edge.to = vertex

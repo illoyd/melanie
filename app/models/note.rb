@@ -2,7 +2,7 @@
 # Note class!
 class Note
   include ArangoDB::OGM::Vertex
-  include ArangoDB::OGM::Document::Timestamps
+  include ArangoDB::OGM::Model::Timestamps
 
   include HasAuthors
   include HasMentions

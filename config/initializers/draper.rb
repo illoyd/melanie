@@ -1,2 +1,2 @@
 # Inject decoratable into V and E
-ArangoDB::OGM::Document.send(:include, Draper::Decoratable)
+ArangoDB::OGM::Model.send(:include, Draper::Decoratable)

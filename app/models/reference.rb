@@ -2,7 +2,7 @@
 # References class!
 class Reference
   include ArangoDB::OGM::Edge
-  include ArangoDB::OGM::Document::Timestamps
+  include ArangoDB::OGM::Model::Timestamps
 
   alias :target :to
   alias :term :to

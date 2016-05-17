@@ -2,7 +2,7 @@
 # Person class!
 class Person
   include ArangoDB::OGM::Vertex
-  include ArangoDB::OGM::Document::Timestamps
+  include ArangoDB::OGM::Model::Timestamps
 
   include HasNotes
   include HasMentions
