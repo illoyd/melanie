@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: git://github.com/illoyd/arangodb-api.git
-  revision: 5745a024f7372dab080ce549028b1ac5d3539adf
+  revision: 07a97e963997c541ae9908c1c69169aeff13f710
   branch: develop
   specs:
     arangodb-api (0.1.0)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: git://github.com/illoyd/arangodb-ogm.git
-  revision: ac500158e0ccbd9489bd5ef23d9d21968bcd2f32
+  revision: 1d154d4beab59f779459c301e0956730e3f9328c
   branch: develop
   specs:
     arangodb-ogm (0.1.0)

@@ -16,21 +16,24 @@ class RecentActivity < BaseQuery
   end
 
   def to_aql
-    "FOR v, e IN #{ direction } '#{ handle }' GRAPH '#{ ArangoDB::OGM.graph_name }' SORT e.updated_at DESC RETURN { e: e, v: v }"
+    "FOR v, e IN #{ direction } @document GRAPH @graph_name SORT e.updated_at DESC RETURN { e: e, v: v }"
+  end
+
+  def to_bindvars
+    { 'document' => handle, 'graph_name' => ArangoDB::OGM.graph_name }
   end
 
   def execute
-    ArangoDB::OGM.client('_api/cursor').post('query' => self.to_aql).result.map do |path|
-      edge = ArangoDB::OGM::Model.build(path['e'])
-      vertex = ArangoDB::OGM::Model.build(path['v'])
-      if edge._from == start.document_handle
-        edge.from = start
-        edge.to = vertex
+    result = ArangoDB::OGM::CollectionResult.new(ArangoDB::OGM.client('_api/cursor').post('query' => self.to_aql, 'bindVars' => self.to_bindvars).body)
+    result.map do |path|
+      if path['e']._from == start.document_handle
+        path['e'].from = start
+        path['e'].to = path['v']
       else
-        edge.from = vertex
-        edge.to = start
+        path['e'].from = path['v']
+        path['e'].to = start
       end
-      edge
+      path['e']
     end
   end
 
