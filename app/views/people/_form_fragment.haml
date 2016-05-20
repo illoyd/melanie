@@ -20,7 +20,7 @@
 
 - custom_attributes = f.object.document_attributes.except(*f.object.class.schema.keys)
 - if custom_attributes.any?
-  %fieldset
+  %fieldset.col-sm-6
     %legend Extras
     - custom_attributes.each do |key,_|
       = f.text_field_block key
